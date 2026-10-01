@@ -2,7 +2,9 @@ from datetime import timedelta
 from .inventory.fefo import reserve
 from .quality.release import may_release
 from .transport.connections import choose
+from .returns.destruction import DestructionWorkflow
 class ColdLedgerService:
+    def destruction_workflow(self,*args,**kwargs): return DestructionWorkflow(*args,**kwargs)
     def reserve_inventory(self,*args,**kwargs): return reserve(*args,**kwargs)
     def release_decision(self,*args,**kwargs): return may_release(*args,**kwargs)
     def next_connection(self,inbound,candidates,minutes): return choose(inbound,candidates,timedelta(minutes=minutes))
